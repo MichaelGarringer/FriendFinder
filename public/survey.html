@@ -16,7 +16,7 @@
 </head>
 
 <body>
-
+<a href="/">Head back home</a>
      <h1>Survey</h1>
         <p>Answer the following questions(1 = Strongly Disagree, 5 = Strongly Agree)</p>
     <div class="container">
@@ -148,15 +148,18 @@
             <br>
       
 </div>
+
+<a href="/api/friends">API</a>
 <script type="text/javascript">
    
     $("#submitBtn").on("click", function(event) {
       event.preventDefault();
+      alert("new friend added")
       var newFriend = {
         name: $("#name").val().trim(),
         phone: $("#photo").val().trim(),
         email: $("#email").val().trim(),
-        testAnswers: [[
+        testAnswers: [
 					$("#q1").val(),
 					$("#q2").val(),
 					$("q3").val(),
@@ -167,17 +170,17 @@
 					$("#q8").val(),
 					$("#q9").val(),
 					$("#q10").val()
-				]]
+                ]
       };
+console.log(newFriend)
 
-      $.post("/api/data/friends", newFriend)
+      $.post("/api/friends", newFriend)
         .then(function(data) {
-          friendsList.push(newFriend)
-        });
+            console.log
+        })
     });
+
   </script>
 </body>
-<script src="../routing/apiRoutes.js"></script>
-<script src="../routing/htmlRoutes.js"></script>
-  
+
 </html>
