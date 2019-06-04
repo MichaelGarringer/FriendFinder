@@ -3,9 +3,8 @@
 <title>Survey</title>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="../routing/apiRoutes.js"></script>
-    <script src="../routing/htmlRoutes.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+ <script src="https://code.jquery.com/jquery.js"></script>
     <style>
     h1{
         text-align: center;
@@ -17,8 +16,9 @@
 </head>
 
 <body>
+
      <h1>Survey</h1>
-        <p>Answer the following questions</p>
+        <p>Answer the following questions(1 = Strongly Disagree, 5 = Strongly Agree)</p>
     <div class="container">
        
         <form>
@@ -29,7 +29,10 @@
                 <input id="photo" type="text" class="form-control" placeholder="pic">
             </div>
             <div class="form-group">
-                <label for="q1"></label>
+                <input id="email" type="text" class="form-control" placeholder="Insert Email">
+            </div>
+            <div class="form-group">
+                <label for="q1">Most people find me funny</label>
                 <select class="form-control" id="q1">
                     <option value="empty"></option>
                     <option value="1">1</option>
@@ -40,7 +43,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="q2"></label>
+                <label for="q2">Most people find me smart</label>
                 <select class="form-control" id="q2">
                     <option value="empty"></option>
                     <option value="1">1</option>
@@ -51,7 +54,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="q3"></label>
+                <label for="q3">I don't like answering all these questions</label>
                 <select class="form-control" id="q3">
                     <option value="empty"></option>
                     <option value="1">1</option>
@@ -62,7 +65,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="q4"></label>
+                <label for="q4">I enjoy watching movies in my free time</label>
                 <select class="form-control" id="q4">
                     <option value="empty"></option>
                     <option value="1">1</option>
@@ -73,7 +76,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="q5"></label>
+                <label for="q5">I enjoy reading books in my free time</label>
                 <select class="form-control" id="q5">
                     <option value="empty"></option>
                     <option value="1">1</option>
@@ -84,7 +87,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="q6"></label>
+                <label for="q6">I enjoy playing video games in my free time</label>
                 <select class="form-control" id="q6">
                     <option value="empty"></option>
                     <option value="1">1</option>
@@ -95,7 +98,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="q7"></label>
+                <label for="q7">I love to code in my free time</label>
                 <select class="form-control" id="q7">
                     <option value="empty"></option>
                     <option value="1">1</option>
@@ -106,7 +109,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="q8"></label>
+                <label for="q8">I am a hard worker</label>
                 <select class="form-control" id="q8">
                     <option value="empty"></option>
                     <option value="1">1</option>
@@ -117,7 +120,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="q9"></label>
+                <label for="q9">I think social media is bad</label>
                 <select class="form-control" id="q9">
                     <option value="empty"></option>
                     <option value="1">1</option>
@@ -128,7 +131,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="q10"></label>
+                <label for="q10">I love going outside</label>
                 <select class="form-control" id="q10">
                     <option value="empty"></option>
                     <option value="1">1</option>
@@ -143,7 +146,38 @@
                 <button id="submitBtn" type="submit" class="btn btn-lg">Submit</button>
             </div>
             <br>
+      
 </div>
-</body>
+<script type="text/javascript">
+   
+    $("#submitBtn").on("click", function(event) {
+      event.preventDefault();
+      var newFriend = {
+        name: $("#name").val().trim(),
+        phone: $("#photo").val().trim(),
+        email: $("#email").val().trim(),
+        testAnswers: [[
+					$("#q1").val(),
+					$("#q2").val(),
+					$("q3").val(),
+					$("#q4").val(),
+					$("#q5").val(),
+					$("#q6").val(),
+					$("#q7").val(),
+					$("#q8").val(),
+					$("#q9").val(),
+					$("#q10").val()
+				]]
+      };
 
+      $.post("/api/data/friends", newFriend)
+        .then(function(data) {
+          friendsList.push(newFriend)
+        });
+    });
+  </script>
+</body>
+<script src="../routing/apiRoutes.js"></script>
+<script src="../routing/htmlRoutes.js"></script>
+  
 </html>
