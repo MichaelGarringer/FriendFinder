@@ -6,17 +6,18 @@
     <!----Viewport for mobile viewing-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<!----jQuery-->    
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-<!------->
- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
-<link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+    <!----jQuery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!----My CSS-->
+    <link rel="stylesheet" href="../style.css">
 
 </head>
 
@@ -27,9 +28,9 @@
         <h3>Answer the following questions</h3>
         <p>(1 = Strongly Disagree, 5 = Strongly Agree)</p>
     </header>
-    
+
     <div class="container">
-<br>
+        <br>
         <form>
             <div class="form-group">
                 <input id="name" type="text" class="form-control" placeholder="What's your name?">
@@ -150,94 +151,93 @@
                     <option value="5">5</option>
                 </select>
             </div>
-    <!-- Button to Open the Modal and Submit Survey -->
-    
-           <div class="text-center">
-                <button type="button" id="submitBtn" class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal">
+            <!-- Button to Open the Modal and Submit Survey -->
+
+            <div class="text-center">
+                <button type="button" id="submitBtn" class="btn btn-success btn-lg" data-toggle="modal"
+                    data-target="#myModal">
                     <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Submit!
-                  </button>
+                </button>
             </div>
             <br>
 
     </div>
     <div class="container">
-    
+
         <!-- The Modal -->
         <div class="modal" id="myModal">
-          <div class="modal-dialog">
-            <div class="modal-content">
-            
-              <!-- Modal Header -->
-              <div class="modal-header">
-                <h4 class="modal-title">New Friend Logged!</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-              </div>
-            
-              <!-- Modal body -->
-              <div class="modal-body">
-                <span id="newFriendinfo" </span>
-              </div>
-              
-              <!-- Modal footer -->
-              <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-              </div>
-              
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">New Friend Logged!</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <span id="newFriendinfo"> </span> </div> 
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            </div>
+
+                    </div>
+                </div>
             </div>
-          </div>
+
         </div>
-        
-      </div>
 
-    
-    <div class="text-center">
-    ||
-    <a href="/">Head back home </a>
-    ||
-    <a href="/api/friends">API </a>
-    ||
-    </div>
 
-    <script type="text/javascript">
-        $("#submitBtn").on("click", function (event) {
-            event.preventDefault();
-            var newFriend = {
-                name: $("#name").val().trim(),
-                photo: $("#photo").val().trim(),
-                email: $("#email").val().trim(),
-                testAnswers: [
-                    $("#q1").val(),
-                    $("#q2").val(),
-                    $("q3").val(),
-                    $("#q4").val(),
-                    $("#q5").val(),
-                    $("#q6").val(),
-                    $("#q7").val(),
-                    $("#q8").val(),
-                    $("#q9").val(),
-                    $("#q10").val()
-                ]
-            };
-            $.post("/api/friends", newFriend )
-            .then(function(data){
-                console.log("survey.html", data)
+        <div class="text-center">
+            ||
+            <a href="/">Head back home </a>
+            ||
+            <a href="/api/friends">API </a>
+            ||
+        </div>
+
+        <script type="text/javascript">
+            $("#submitBtn").on("click", function (event) {
+                event.preventDefault();
+                var newFriend = {
+                    name: $("#name").val().trim(),
+                    photo: $("#photo").val().trim(),
+                    email: $("#email").val().trim(),
+                    testAnswers: [
+                        $("#q1").val(),
+                        $("#q2").val(),
+                        $("q3").val(),
+                        $("#q4").val(),
+                        $("#q5").val(),
+                        $("#q6").val(),
+                        $("#q7").val(),
+                        $("#q8").val(),
+                        $("#q9").val(),
+                        $("#q10").val()
+                    ]
+                };
+                $.post("/api/friends", newFriend)
+                    .then(function (data) {
+                        console.log("survey.html", data)
+                    });
+
+
             });
-           
-        
-        });
-        $.get("/api/friends", function(data) {
-        for (var i = 0; i < data.length; i++) {
-          console.log(data[i]);
-          var listGroupItem = $("<li class='list-group-item'>");
-          listGroupItem.append(`
+            $.get("/api/friends", function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    console.log(data[i]);
+                    var listGroupItem = $("<li class='list-group-item'>");
+                    listGroupItem.append(`
           <img src="${data[i].photo}" alt="${data[i].name}" width="50%" height="100%">
           `)
-          listGroupItem.append($("<h2>").text("Name: " + data[i].name));
-          listGroupItem.append($("<h3>").text("Survey Results: " + data[i].testAnswers));
-          $("#newFriendinfo").append(listGroupItem);
-          }
-        });
-    </script>
+                    listGroupItem.append($("<h2>").text("Name: " + data[i].name));
+                    listGroupItem.append($("<h3>").text("Survey Results: " + data[i].testAnswers));
+                    $("#newFriendinfo").append(listGroupItem);
+                }
+            });
+        </script>
 
 </body>
 
