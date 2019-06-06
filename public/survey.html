@@ -203,7 +203,6 @@
             var newFriend = {
                 name: $("#name").val().trim(),
                 photo: $("#photo").val().trim(),
-                email: $("#email").val().trim(),
                 testAnswers: [
                     $("#q1").val(),
                     $("#q2").val(),
@@ -223,7 +222,7 @@
                 });
             // var totalDifference = ""
             $.get("/api/friends", function (data) {
-                var ran = Math.floor(Math.random() * 4)
+                var ran = Math.floor(Math.random() * 3 )
                 //ADD BACK IN FOR LOOP WHEN DETEMINING THE DIFFERENCE!!!!
                 // for (var i = 0; i < data.length; i++) {
                 //     console.log(data[0]);
