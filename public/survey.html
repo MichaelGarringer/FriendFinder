@@ -1,35 +1,66 @@
 <!DOCTYPE html>
 <html>
 <title>Survey</title>
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
- <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery.js"></script>
     <style>
-    h1{
-        text-align: center;
-    }
-    p{
-        text-align: center;
-    }
+        h1 {
+            text-align: center;
+        }
+        h2{
+            text-align:center;
+        }
+        h3{
+            text-align:center;
+        }
+        body{
+            background-color:red;
+        }
+        .container{
+            background-color: aliceblue;
+        }
+        p {
+            text-align: center;
+        }
+        .form-group{
+            text-align:center;
+        }
+     
+        
     </style>
 </head>
 
 <body>
-<a href="/">Head back home</a>
-     <h1>Survey</h1>
-        <p>Answer the following questions(1 = Strongly Disagree, 5 = Strongly Agree)</p>
+    <header>
+        <h1>Friend Finder</h1>
+        <h2>Survey</h2>
+        <h3>Answer the following questions</h3>
+        <p>(1 = Strongly Disagree, 5 = Strongly Agree)</p>
+    
+    
+    </header>
+    
     <div class="container">
-       
+<br>
         <form>
             <div class="form-group">
                 <input id="name" type="text" class="form-control" placeholder="What's your name?">
             </div>
             <div class="form-group">
-                <input id="photo" type="text" class="form-control" placeholder="pic">
+                <input id="photo" type="text" class="form-control" placeholder="A link to a picture of yourself?">
             </div>
             <div class="form-group">
-                <input id="email" type="text" class="form-control" placeholder="Insert Email">
+                <input id="email" type="text" class="form-control" placeholder="Your email address?">
             </div>
             <div class="form-group">
                 <label for="q1">Most people find me funny</label>
@@ -98,7 +129,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="q7">I love to code in my free time</label>
+                <label for="q7">I like to code in my free time</label>
                 <select class="form-control" id="q7">
                     <option value="empty"></option>
                     <option value="1">1</option>
@@ -143,44 +174,54 @@
             </div>
 
             <div class="text-center">
-                <button id="submitBtn" type="submit" class="btn btn-lg">Submit</button>
+                <button type="button" id="submitBtn" class="btn btn-success btn-lg">
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Submit!
+                  </button>
             </div>
             <br>
-      
-</div>
 
-<a href="/api/friends">API</a>
-<script type="text/javascript">
-   
-    $("#submitBtn").on("click", function(event) {
-      event.preventDefault();
-      alert("new friend added")
-      var newFriend = {
-        name: $("#name").val().trim(),
-        phone: $("#photo").val().trim(),
-        email: $("#email").val().trim(),
-        testAnswers: [
-					$("#q1").val(),
-					$("#q2").val(),
-					$("q3").val(),
-					$("#q4").val(),
-					$("#q5").val(),
-					$("#q6").val(),
-					$("#q7").val(),
-					$("#q8").val(),
-					$("#q9").val(),
-					$("#q10").val()
+    </div>
+    <div class="text-center">
+    ||
+    <a href="/">Head back home </a>
+    ||
+    <a href="/api/friends">API </a>
+    ||
+    </div>
+
+    <script type="text/javascript">
+
+        $("#submitBtn").on("click", function (event) {
+            event.preventDefault();
+            var newFriend = {
+                name: $("#name").val().trim(),
+                phone: $("#photo").val().trim(),
+                email: $("#email").val().trim(),
+                testAnswers: [
+                    $("#q1").val(),
+                    $("#q2").val(),
+                    $("q3").val(),
+                    $("#q4").val(),
+                    $("#q5").val(),
+                    $("#q6").val(),
+                    $("#q7").val(),
+                    $("#q8").val(),
+                    $("#q9").val(),
+                    $("#q10").val()
                 ]
-      };
-console.log(newFriend)
+            };
+            $.post("/api/friends", newFriend )
+            .then(function(data){
+                console.log("survey.html", data)
+                alert("New friend logged!")
 
-      $.post("/api/friends", newFriend)
-        .then(function(data) {
-            console.log
-        })
-    });
+            });
+           
+        
+        });
 
-  </script>
+    </script>
+
 </body>
 
 </html>
