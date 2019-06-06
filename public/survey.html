@@ -39,9 +39,6 @@
                 <input id="photo" type="text" class="form-control" placeholder="A link to a picture of yourself?">
             </div>
             <div class="form-group">
-                <input id="email" type="text" class="form-control" placeholder="Your email address?">
-            </div>
-            <div class="form-group">
                 <label for="q1">Most people find me funny</label>
                 <select class="form-control" id="q1">
                     <option value="empty"></option>
@@ -171,73 +168,78 @@
 
                     <!-- Modal Header -->
                     <div class="modal-header">
-                        <h4 class="modal-title">New Friend Logged!</h4>
+                        <h1 class="modal-title">New Friend Logged!</h1>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
 
                     <!-- Modal body -->
                     <div class="modal-body">
-                        <span id="newFriendinfo"> </span> </div> 
-                            <!-- Modal footer -->
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                            </div>
-
+                        <p class = "modal-text">Looks like your best match is...</p>
+                        <span id="newFriendinfo"></span>
                     </div>
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+
                 </div>
             </div>
-
         </div>
 
-
-        <div class="text-center">
-            ||
-            <a href="/">Head back home </a>
-            ||
-            <a href="/api/friends">API </a>
-            ||
-        </div>
-
-        <script type="text/javascript">
-            $("#submitBtn").on("click", function (event) {
-                event.preventDefault();
-                var newFriend = {
-                    name: $("#name").val().trim(),
-                    photo: $("#photo").val().trim(),
-                    email: $("#email").val().trim(),
-                    testAnswers: [
-                        $("#q1").val(),
-                        $("#q2").val(),
-                        $("q3").val(),
-                        $("#q4").val(),
-                        $("#q5").val(),
-                        $("#q6").val(),
-                        $("#q7").val(),
-                        $("#q8").val(),
-                        $("#q9").val(),
-                        $("#q10").val()
-                    ]
-                };
-                $.post("/api/friends", newFriend)
-                    .then(function (data) {
-                        console.log("survey.html", data)
-                    });
+    </div>
 
 
-            });
+    <div class="text-center">
+        ||
+        <a href="/">Head back home </a>
+        ||
+        <a href="/api/friends">API </a>
+        ||
+    </div>
+
+    <script type="text/javascript">
+        $("#submitBtn").on("click", function (event) {
+            event.preventDefault();
+            var newFriend = {
+                name: $("#name").val().trim(),
+                photo: $("#photo").val().trim(),
+                email: $("#email").val().trim(),
+                testAnswers: [
+                    $("#q1").val(),
+                    $("#q2").val(),
+                    $("q3").val(),
+                    $("#q4").val(),
+                    $("#q5").val(),
+                    $("#q6").val(),
+                    $("#q7").val(),
+                    $("#q8").val(),
+                    $("#q9").val(),
+                    $("#q10").val()
+                ]
+            };
+            $.post("/api/friends", newFriend)
+                .then(function (data) {
+                    console.log("survey.html", data)
+                });
+            // var totalDifference = ""
             $.get("/api/friends", function (data) {
-                for (var i = 0; i < data.length; i++) {
-                    console.log(data[i]);
+                var ran = Math.floor(Math.random() * 4)
+                //ADD BACK IN FOR LOOP WHEN DETEMINING THE DIFFERENCE!!!!
+                // for (var i = 0; i < data.length; i++) {
+                //     console.log(data[0]);
                     var listGroupItem = $("<li class='list-group-item'>");
                     listGroupItem.append(`
-          <img src="${data[i].photo}" alt="${data[i].name}" width="50%" height="100%">
-          `)
-                    listGroupItem.append($("<h2>").text("Name: " + data[i].name));
-                    listGroupItem.append($("<h3>").text("Survey Results: " + data[i].testAnswers));
+                        <h2>${data[ran].name}
+                        <br>
+                        <br>
+                        <img src="${data[ran].photo}" alt="${data[ran].name}" width="200" height="200">`)
+
                     $("#newFriendinfo").append(listGroupItem);
-                }
+                // }
             });
-        </script>
+
+        });
+    </script>
 
 </body>
 

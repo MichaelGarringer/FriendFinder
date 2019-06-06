@@ -11,15 +11,20 @@
         body{
             background-color:red;
         }
-        .container{
-            background-color: aliceblue;
-        }
+      
         p {
             text-align: center;
         }
         .form-group{
             text-align:center;
         }
-     #newFriendinfo{
-         align-content: center;
-     }
+       .modal-text{
+           text-align:center;
+           color:white;
+       }
+       .modal-body{
+           background-color:#777777
+       }
+    .container{
+        background-color:aliceblue;
+    }
