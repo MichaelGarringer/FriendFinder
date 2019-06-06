@@ -1,0 +1,23 @@
+
+        h1 {
+            text-align: center;
+        }
+        h2{
+            text-align:center;
+        }
+        h3{
+            text-align:center;
+        }
+        body{
+            background-color:red;
+        }
+        .container{
+            background-color: aliceblue;
+        }
+        p {
+            text-align: center;
+        }
+        .form-group{
+            text-align:center;
+        }
+     
