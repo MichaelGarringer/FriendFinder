@@ -41,7 +41,7 @@
             <div class="form-group">
                 <label for="q1">Most people find me funny</label>
                 <select class="form-control" id="q1">
-                    <option value="empty"></option>
+                    <option value="empty">(1 = Strongly Disagree, 5 = Strongly Agree)</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -52,7 +52,7 @@
             <div class="form-group">
                 <label for="q2">Most people find me smart</label>
                 <select class="form-control" id="q2">
-                    <option value="empty"></option>
+                    <option value="empty">(1 = Strongly Disagree, 5 = Strongly Agree)</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -63,7 +63,7 @@
             <div class="form-group">
                 <label for="q3">I don't like answering all these questions</label>
                 <select class="form-control" id="q3">
-                    <option value="empty"></option>
+                    <option value="empty">(1 = Strongly Disagree, 5 = Strongly Agree)</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -74,7 +74,7 @@
             <div class="form-group">
                 <label for="q4">I enjoy watching movies in my free time</label>
                 <select class="form-control" id="q4">
-                    <option value="empty"></option>
+                    <option value="empty">(1 = Strongly Disagree, 5 = Strongly Agree)</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -85,7 +85,7 @@
             <div class="form-group">
                 <label for="q5">I enjoy reading books in my free time</label>
                 <select class="form-control" id="q5">
-                    <option value="empty"></option>
+                    <option value="empty">(1 = Strongly Disagree, 5 = Strongly Agree)</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -96,7 +96,7 @@
             <div class="form-group">
                 <label for="q6">I enjoy playing video games in my free time</label>
                 <select class="form-control" id="q6">
-                    <option value="empty"></option>
+                    <option value="empty">(1 = Strongly Disagree, 5 = Strongly Agree)</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -107,7 +107,7 @@
             <div class="form-group">
                 <label for="q7">I like to code in my free time</label>
                 <select class="form-control" id="q7">
-                    <option value="empty"></option>
+                    <option value="empty">(1 = Strongly Disagree, 5 = Strongly Agree)</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -118,7 +118,7 @@
             <div class="form-group">
                 <label for="q8">I am a hard worker</label>
                 <select class="form-control" id="q8">
-                    <option value="empty"></option>
+                    <option value="empty">(1 = Strongly Disagree, 5 = Strongly Agree)</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -129,7 +129,7 @@
             <div class="form-group">
                 <label for="q9">I think social media is bad</label>
                 <select class="form-control" id="q9">
-                    <option value="empty"></option>
+                    <option value="empty">(1 = Strongly Disagree, 5 = Strongly Agree)</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -140,7 +140,7 @@
             <div class="form-group">
                 <label for="q10">I love going outside</label>
                 <select class="form-control" id="q10">
-                    <option value="empty"></option>
+                    <option value="empty">(1 = Strongly Disagree, 5 = Strongly Agree)</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -151,8 +151,7 @@
             <!-- Button to Open the Modal and Submit Survey -->
 
             <div class="text-center">
-                <button type="button" id="submitBtn" class="btn btn-success btn-lg" data-toggle="modal"
-                    data-target="#myModal">
+                <button type="button" id="submitBtn" class="btn btn-danger btn-lg">
                     <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Submit!
                 </button>
             </div>
@@ -162,7 +161,7 @@
     <div class="container">
 
         <!-- The Modal -->
-        <div class="modal" id="myModal">
+        <div class="modal" id="friend-modal">
             <div class="modal-dialog">
                 <div class="modal-content">
 
@@ -174,72 +173,78 @@
 
                     <!-- Modal body -->
                     <div class="modal-body">
-                        <p class = "modal-text">Looks like your best match is...</p>
-                        <span id="newFriendinfo"></span>
+                        <p class="modal-text">Looks like your new best friend is...</p>
+                        <span id="match-name"></span>
+                        <img id="match-pic" src="">
                     </div>
                     <!-- Modal footer -->
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                     </div>
-
                 </div>
             </div>
         </div>
 
     </div>
+    <br>
 
-
-    <div class="text-center">
+    <div class="links">
         ||
-        <a href="/">Head back home </a>
+        <button type="button" class="btn-danger btn" href="/">Head back home </a></button>
         ||
-        <a href="/api/friends">API </a>
+        <button type="button" class="btn-danger btn" href="/api/friends">API data </a></button>
         ||
+        
     </div>
 
     <script type="text/javascript">
-        $("#submitBtn").on("click", function (event) {
-            event.preventDefault();
-            var newFriend = {
-                name: $("#name").val().trim(),
-                photo: $("#photo").val().trim(),
-                testAnswers: [
-                    $("#q1").val(),
-                    $("#q2").val(),
-                    $("q3").val(),
-                    $("#q4").val(),
-                    $("#q5").val(),
-                    $("#q6").val(),
-                    $("#q7").val(),
-                    $("#q8").val(),
-                    $("#q9").val(),
-                    $("#q10").val()
-                ]
-            };
-            $.post("/api/friends", newFriend)
-                .then(function (data) {
-                    console.log("survey.html", data)
-                });
-            // var totalDifference = ""
-            $.get("/api/friends", function (data) {
-                var ran = Math.floor(Math.random() * 3 )
-                //ADD BACK IN FOR LOOP WHEN DETEMINING THE DIFFERENCE!!!!
-                // for (var i = 0; i < data.length; i++) {
-                //     console.log(data[0]);
-                    var listGroupItem = $("<li class='list-group-item'>");
-                    listGroupItem.append(`
-                        <h2>${data[ran].name}
-                        <br>
-                        <br>
-                        <img src="${data[ran].photo}" alt="${data[ran].name}" width="200" height="200">`)
-
-                    $("#newFriendinfo").append(listGroupItem);
-                // }
+      
+        //What happens when you click the Submit button
+        $("#submitBtn").on("click", function(event) {
+          event.preventDefault();
+         //Check to see if all the forms are filled out 
+          function validation() {
+            var isValid = true;
+            $(".form-control").each(function() {
+              if ($(this).val() === "") {
+                isValid = false;
+              }
             });
-
+            return isValid;
+          }
+         //Check if validation is true
+          if (validation()) {
+            // Create an object for the user"s data
+            var newFriend = {
+              name: $("#name").val(),
+              photo: $("#photo").val(),
+              testAnswers: [
+                $("#q1").val(),
+                $("#q2").val(),
+                $("#q3").val(),
+                $("#q4").val(),
+                $("#q5").val(),
+                $("#q6").val(),
+                $("#q7").val(),
+                $("#q8").val(),
+                $("#q9").val(),
+                $("#q10").val()
+              ]
+            };
+            // AJAX post the data to the friends API.
+            $.post("/api/friends", newFriend, function(data) {
+              //dispay match-name and match-pic
+              $("#match-name").text(data.name);
+              console.log(data.name)
+              $("#match-pic").attr("src", data.photo);
+              console.log(data.photo)
+              // open up that modal
+              $("#friend-modal").modal("toggle");
+            });
+          } else {
+            alert("You didn't finish filling everything out!");
+          }
         });
-    </script>
-
-</body>
-
-</html>
+      </script>
+    </body>
+  </html>

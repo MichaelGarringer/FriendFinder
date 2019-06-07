@@ -9,7 +9,7 @@
             text-align:center;
         }
         body{
-            background-color:red;
+            background-color:#777777;
         }
       
         p {
@@ -18,13 +18,24 @@
         .form-group{
             text-align:center;
         }
-       .modal-text{
-           text-align:center;
+       #match-name{
+           
            color:white;
+           font-size:100px
        }
+       #modal-text{
+        text-align:center;
+        color:white;
+    }
        .modal-body{
            background-color:#777777
        }
     .container{
         background-color:aliceblue;
+    }
+    .links{
+        color:red;
+        text-align:center;
+        font-weight:bold;
+
     }

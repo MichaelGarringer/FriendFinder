@@ -1,7 +1,6 @@
 //Dependency for express
 var express = require("express");
 var path = require("path")
-
 var app = express();
 
 //Define port
@@ -15,6 +14,6 @@ app.use(express.json());
 require("./routing/apiRoutes")(app);
 require("./routing/htmlRoutes")(app);
 //Run the PORT 
-app.listen(PORT, function() {
+app.listen(PORT, function () {
   console.log("App listening on PORT: " + PORT);
 });
